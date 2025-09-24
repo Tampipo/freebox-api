@@ -110,6 +110,7 @@ class Access:
             return resp
 
         resp_data = await resp.json()
+
         if resp_data.get("error_code") in ["auth_required", "invalid_session"]:
             logger.debug("Invalid session")
             await self._refresh_session_token()
@@ -167,3 +168,11 @@ class Access:
         if not self.session_permissions:
             await self._refresh_session_token()
         return self.session_permissions
+
+    async def get_session_token(self) -> Optional[str]:
+        """
+        Returns the session token.
+        """
+        if not self.session_token:
+            await self._refresh_session_token()
+        return self.session_token

@@ -24,6 +24,7 @@ from freebox_api.api.dhcp import Dhcp
 from freebox_api.api.download import Download
 from freebox_api.api.freeplug import Freeplug
 from freebox_api.api.fs import Fs
+from freebox_api.api.ws import Ws
 from freebox_api.api.ftp import Ftp
 from freebox_api.api.fw import Fw
 from freebox_api.api.home import Home
@@ -97,6 +98,7 @@ class Freepybox:
         self.phone: Phone
         self.ftp: Ftp
         self.fs: Fs
+        self.ws: Ws
         self.fw: Fw
         self.freeplug: Freeplug
         self.call: Call
@@ -147,6 +149,7 @@ class Freepybox:
         self.phone = Phone(self._access)
         self.ftp = Ftp(self._access)
         self.fs = Fs(self._access)
+        self.ws = Ws(self._access, api_version=self.api_version)
         self.fw = Fw(self._access)
         self.freeplug = Freeplug(self._access)
         self.call = Call(self._access)
