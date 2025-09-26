@@ -157,7 +157,11 @@ class Fs:
     async def mkdir(self, create_directory=create_directory_schema):
         """
         Create directory
+        parent should be formatted as /Path/
         """
+        create_directory["parent"] = base64.b64encode(
+            create_directory["parent"].encode("utf-8")
+        ).decode("utf-8")
         return await self._access.post("fs/mkdir/", create_directory)
 
     async def mkpath(self, path):
